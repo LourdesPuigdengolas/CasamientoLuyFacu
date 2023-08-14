@@ -1,0 +1,85 @@
+body {
+    margin: 0px !important;
+    padding: 0px !important; 
+    font-family: 'Poppins', serif !important;
+    background: #FAF7F3 !important;
+}
+
+nav {
+    background: #1E2E66;
+    height: auto;
+}
+
+
+.navbar-brand:hover{
+    background: #FAF7F3;
+    border-radius: 10px;
+}
+
+.nav-link{
+    font-weight: bold !important; 
+    font-size: 14 !important;
+    color: #FAF7F3 !important;
+    border-radius: 10px;
+}
+
+.nav-link:hover{
+    background-color: #22244dd3;
+}
+
+.titulo1{
+    font-weight: bold !important; 
+    font-size: 24 !important;
+    color: #e0b4da !important; 
+}
+
+.titulo2{
+    font-size: 24 !important; 
+    font-weight: 600 !important;
+}
+
+.texto1{
+    font-weight: bold !important; 
+    font-size: 16 !important;
+    color: #1E2E66 !important; 
+}
+
+.texto2{
+    font-weight: 600 !important; 
+    font-size: 14 !important;
+    letter-spacing: 1px;
+    color: #1E2E66 !important;
+}
+
+.texto3{
+    font-size: 14 !important;
+   
+}
+.texto4{
+    font-size: 14 !important;
+    color: #1E2E66 !important; 
+    
+}
+
+.carta{
+    background: rgba(235, 204, 194, 0.45)!important;
+    color: #1f2d5d !important; 
+    text-align: justify !important;
+}
+
+
+.boton{
+    background: #DDC8C5 !important;
+}
+
+.boton:hover{
+    background: #b59393 !important;
+}
+
+footer{
+    background: #172146;
+}
+
+.cartaservicio{
+    background-color: #495FA6 !important;
+}
