@@ -49,12 +49,16 @@ nav {
     font-size: 14 !important;
     letter-spacing: 1px;
     color: #1E2E66 !important;
+    text-align: center !important;
 }
 
 .texto3{
-    font-size: 16 !important;
-   
+    font-size: 18 !important;
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    text-align: center !important;
 }
+
 .texto4{
     font-size: 14 !important;
     color: #1E2E66 !important; 
@@ -64,7 +68,7 @@ nav {
 .carta{
     background: rgba(235, 204, 194, 0.45)!important;
     color: #1f2d5d !important; 
-    text-align: justify !important;
+  
 }
 
 
