@@ -3,10 +3,11 @@ body {
     padding: 0px !important; 
     font-family: 'Poppins', serif !important;
     background: #FAF7F3 !important;
+  
 }
 
 nav {
-    background: #1E2E66;
+    background: #FAF7F3;
     height: auto;
 }
 
@@ -25,6 +26,18 @@ nav {
 
 .nav-link:hover{
     background-color: #22244dd3;
+}
+#lyf img{
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+}
+#esq img{
+    margin-left: 0% !important;
+    margin-right: 0% !important;
+}
+#flor img{
+    margin-left: 0% !important;
+    margin-right: 0% !important;
 }
 
 .titulo1{
@@ -71,7 +84,6 @@ nav {
   
 }
 
-
 .boton{
     background: #DDC8C5 !important;
 }
@@ -86,4 +98,26 @@ footer{
 
 .cartaservicio{
     background-color: #495FA6 !important;
+}
+
+@media screen and (min-width: 768px) {
+  #lyf img{
+    width: 80% !important;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+   
+  }
+
+  #esq img{
+    width: 20% !important;
+    height: auto;
+    margin-left: 150px !important;
+    margin-right: 10px !important;
+  }
+  #flor img{
+    width: 50% !important;
+    margin-left: 25% !important;
+    
+  }
+     
 }
