@@ -4,40 +4,34 @@ import {
  } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBBIhSTYHOSWqGJO-peB_ujwo74H9L0Je4",
-    authDomain: "wedding-f9e01.firebaseapp.com",
-    projectId: "wedding-f9e01",
-    storageBucket: "wedding-f9e01.appspot.com",
-    messagingSenderId: "281501470356",
-    appId: "1:281501470356:web:1811b82a2ec2bb4bcdee81"
+    apiKey: "TuApiKey",
+    authDomain: "TuAuthDomain",
+    projectId: "TuProjectId",
+    storageBucket: "TuStorageBucket",
+    messagingSenderId: "TuMessagingSenderId",
+    appId: "TuAppId"
 };
 
-
-//  init firebase app
+// Inicializa la aplicación de Firebase
 initializeApp(firebaseConfig);
 
-//  init services
-const db = getFirestore()
+// Inicializa los servicios de Firebase Firestore
+const db = getFirestore();
 
-//  collection reference
-const colRef = collection(db, 'Regalos')
+// Referencia a la colección de regalos
+const colRef = collection(db, 'Regalos');
 
-// _________________________________________________________________________________________________________________________
-
+// Array para almacenar los datos de los regalos
 let regalos = [];
 
-
-// Función para mostrar los datos de la colección
+// Función para mostrar los datos de la colección de regalos
 const mostrarRegalos = async () => {
-
-    
-
     try {
         const querySnapshot = await getDocs(colRef);
-        const regalos = querySnapshot.docs.map((doc) => ({
+        regalos = querySnapshot.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
-            originalStock: doc.data().Stock // Almacenar el valor original de Stock
+            originalStock: doc.data().Stock
         }));
 
         const primeraColumna = document.getElementById('regalos-column-1');
@@ -52,7 +46,6 @@ const mostrarRegalos = async () => {
         
             const regaloHtml = `<div class=""><p>${checkboxHtml} ${regaloText}</p></div>`;
         
-            // const regaloHtml = `<div class="regalos-ind"> <p>${regalo.title} </p> <input type="checkbox" ${isChecked} ${disabledAttr} data-id="${regalo.id}" data-title="${regalo.title}"></div>`;
             if (index < 11) {
                 primeraColumna.innerHTML += regaloHtml;
             } else {
@@ -71,19 +64,10 @@ const mostrarRegalos = async () => {
                 guardarCambiosButton.disabled = false;
                 guardarCambiosButton.setAttribute('data-id', regaloId);
 
-                // Restaurar la habilidad de checkbox al valor original de Stock
                 const regalo = regalos.find((regalo) => regalo.id === regaloId);
                 if (regalo && regalo.Stock !== regalo.originalStock) {
                     checkbox.disabled = false;
                 }
-
-                // Mostrar el modal con el nombre del regalo
-                // if (checkbox.checked) {
-                //     console.log("Mostrando modal");
-                //     $("#myModal").modal("show");
-                //     $("#modal-body").html(`<h2>HOLAAAAA "${regalo.title}"</h2>`);
-                // }
-                // console.log(checkbox.checked)
             });
         });
     } catch (error) {
@@ -91,14 +75,13 @@ const mostrarRegalos = async () => {
     }
 };
 
-
-
-// Mostrar los regalos al cargar la página
+// Llama a la función para mostrar los regalos al cargar la página
 mostrarRegalos();
 
-
-// Agregar un event listener al botón de "Guardar cambios"
+// Obtiene una referencia al botón "Guardar cambios"
 const guardarCambiosButton = document.getElementById("guardar-cambios");
+
+// Agrega un event listener al botón "Guardar cambios"
 guardarCambiosButton.addEventListener('click', async () => {
     const regaloId = guardarCambiosButton.getAttribute('data-id');
     if (regaloId) {
@@ -112,7 +95,7 @@ guardarCambiosButton.addEventListener('click', async () => {
                     if (!regaloSnapshot.exists()) {
                         throw new Error('El regalo no existe');
                     }
-                    console.log(transactionResult)
+                    
                     // Leer el valor actual de Stock
                     const stockActual = regaloSnapshot.data().Stock;
                     
@@ -137,6 +120,9 @@ guardarCambiosButton.addEventListener('click', async () => {
 
                 // Recargar la página automáticamente después de guardar los cambios
                 location.reload();
+
+                // Redirigir a la página index.html después de guardar los cambios exitosamente
+                window.location.href = "../index.html";
             } catch (error) {
                 console.error('Error actualizando datos:', error);
             }
