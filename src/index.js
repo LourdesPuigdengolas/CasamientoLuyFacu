@@ -4,12 +4,12 @@ import {
  } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "TuApiKey",
-    authDomain: "TuAuthDomain",
-    projectId: "TuProjectId",
-    storageBucket: "TuStorageBucket",
-    messagingSenderId: "TuMessagingSenderId",
-    appId: "TuAppId"
+    apiKey: "AIzaSyBBIhSTYHOSWqGJO-peB_ujwo74H9L0Je4",
+    authDomain: "wedding-f9e01.firebaseapp.com",
+    projectId: "wedding-f9e01",
+    storageBucket: "wedding-f9e01.appspot.com",
+    messagingSenderId: "281501470356",
+    appId: "1:281501470356:web:1811b82a2ec2bb4bcdee81"
 };
 
 // Inicializa la aplicación de Firebase
@@ -43,9 +43,12 @@ const mostrarRegalos = async () => {
 
             const checkboxHtml = `<input type="checkbox" ${isChecked} ${disabledAttr} data-id="${regalo.id}" data-title="${regalo.title}">`;
             const regaloText = `<span class="regalo-text ${isChecked ? 'checked' : ''}">${regalo.title}</span>`;
-        
-            const regaloHtml = `<div class=""><p>${checkboxHtml} ${regaloText}</p></div>`;
-        
+
+            // Agregar un enlace (link) si el campo "Link" tiene contenido
+            const linkText1 = regalo.Link ? `<a href="${regalo.Link}" target="_blank">${regalo.Link}</a>` : '';
+            const linkText2 = regalo.Link2 ? `<a  href="${regalo.Link2}" target="_blank">${regalo.Link2}</a>` : '';
+
+            const regaloHtml = `<div class=""><p>${checkboxHtml} ${regaloText} ${linkText1} ${linkText2}</p></div>`;
             if (index < 11) {
                 primeraColumna.innerHTML += regaloHtml;
             } else {
