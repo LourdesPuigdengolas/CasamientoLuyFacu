@@ -84,27 +84,31 @@ mostrarRegalos();
 // Obtiene una referencia al botón "Guardar cambios"
 const guardarCambiosButton = document.getElementById("guardar-cambios");
 
+// ...
+
 // Agrega un event listener al botón "Guardar cambios"
 guardarCambiosButton.addEventListener('click', async () => {
+        // Mostrar el modal
+    $('#myModalConfirmation').modal('show');
     const regaloId = guardarCambiosButton.getAttribute('data-id');
     if (regaloId) {
         const checkbox = document.querySelector(`input[data-id="${regaloId}"]`);
         if (checkbox) {
             try {
-                const transactionResult = await runTransaction(db, async (transaction) => {
+                 await runTransaction(db, async (transaction) => {
                     const regaloRef = doc(db, 'Regalos', regaloId);
                     const regaloSnapshot = await transaction.get(regaloRef);
-                    
+
                     if (!regaloSnapshot.exists()) {
                         throw new Error('El regalo no existe');
                     }
-                    
+
                     // Leer el valor actual de Stock
                     const stockActual = regaloSnapshot.data().Stock;
-                    
+
                     // Actualizar el valor de Stock en la base de datos
                     transaction.update(regaloRef, { Stock: checkbox.checked });
-                    
+
                     return stockActual;
                 });
 
@@ -121,14 +125,15 @@ guardarCambiosButton.addEventListener('click', async () => {
                     regalo.originalStock = checkbox.checked;
                 }
 
-                // Recargar la página automáticamente después de guardar los cambios
-                location.reload();
-
-                // Redirigir a la página index.html después de guardar los cambios exitosamente
-                window.location.href = "../index.html";
             } catch (error) {
                 console.error('Error actualizando datos:', error);
             }
         }
     }
+});
+
+// Manjeador de evento para el botón "Aceptar" dentro del modal
+document.getElementById("aceptarModal").addEventListener("click", function() {
+    // Redirige al index.html
+    window.location.href = "../index.html";
 });
