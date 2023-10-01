@@ -36,10 +36,6 @@ const mostrarRegalos = async () => {
 
         const primeraColumna = document.getElementById('regalos-column-1');
         const segundaColumna = document.getElementById('regalos-column-2');
-        const links = function links() {
-            window.open("https://ww", "_blank");
-            window.open("https://ww", "_blank");
-        }
         
         regalos.forEach((regalo, index) => {
             const isChecked = regalo.Stock ? 'checked' : '';
@@ -49,13 +45,10 @@ const mostrarRegalos = async () => {
             const regaloText = `<span class="regalo-text ${isChecked ? 'checked' : ''}">${regalo.title}</span>`;
 
             // Agregar un enlace (link) si el campo "Link" tiene contenido
-            //const linkText1 = regalo.Link ? `<a href="${regalo.Link}" target="_blank">Ej. 1</a>` : '';
-            //const linkText2 = regalo.Link2 ? `<a  href="${regalo.Link2}" target="_blank">Ej. 2</a>` : '';
-            
-            const linkText2 = `<a class="example-link" onclick="
-                window.open('${regalo.Link}', '_blank')
-                window.open('${regalo.Link2}', '_blank')
-            "><u>Ver ejemplos</u></a>`;
+            const linkText2 = regalo.Link || regalo.Link2 ? `<a class="example-link" onclick="
+                if ('${regalo.Link}') window.open('${regalo.Link}', '_blank');
+                if ('${regalo.Link2}') window.open('${regalo.Link2}', '_blank');
+            "><u>Ver ejemplos</u></a>` : '';
             
             const regaloHtml = `<div class=""><p>${checkboxHtml} ${regaloText} &nbsp ${linkText2}</p></div>`;
             if (index < 11) {
